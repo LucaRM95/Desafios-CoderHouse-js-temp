@@ -1,6 +1,6 @@
 'use strict';
 
-let user = 'Luca';
+let user = 'Luca095';
 let pass = '1234L';
 
 let pRemeraPers = 1450;
@@ -44,28 +44,27 @@ const logear_Registrar = () => {
 
 //función validar usuario y contraseña
 const validar_Datos = () => {
-    let logUser = prompt('Ingrese su nombre de usuario');
-    let logPass = prompt('Ingrese su contraseña');
+    let log_User = prompt('Ingrese su nombre de usuario');
+    let log_Pass = prompt('Ingrese su contraseña');
     let cont = 1;
 
-    if(logUser === user && logPass === pass){
-        alert(`Hola ${logUser}, bienvenido!!`);
-        carrito();
-    }else{
-        while(logUser !== user && logPass !== pass && cont<3){
-            alert('Contraseña y/o usuario incorrecto, intente de nuevo');
+    while(user != log_User && pass != log_Pass && cont < 3){
+        alert('Contraseña y/o usuario incorrecto, intente de nuevo');
 
-            logUser = prompt('Ingrese su nombre de usuario');
-            logPass = prompt('Ingrese su contraseña');
+        console.log(log_User, log_Pass);
 
-            cont++;
+        cont++;
 
-            if(cont >= 3){
-                alert("Has llegado al limite de intentos, prueba más tarde");
-                break;
-            }
-        }
+        log_User = prompt('Ingrese su nombre de usuario');
+        log_Pass = prompt('Ingrese su contraseña');
     }
+    
+    if(cont >= 3){
+        alert("Has llegado al limite de intentos, prueba más tarde");
+    }else{
+        alert(`Hola ${log_User}, bienvenido!!`);
+        carrito();
+    } 
 }
 
 //función carrito
@@ -75,9 +74,9 @@ const carrito = () => {
 
     do{
         rpta = prompt("¿Desea comprar algún producto? (si/no)");
-    }while(rpta.toLowerCase() != 'si' && rpta.toLowerCase() != 'no');
+    }while(rpta.toLowerCase() !== 'si' && rpta.toLowerCase() !== 'no');
 
-    while(rpta.toLowerCase() == 'si'){
+    while(rpta.toLowerCase() === 'si'){
         let eleccion = "";
         
         alert(`
@@ -91,23 +90,24 @@ const carrito = () => {
 
         do{
             eleccion = prompt("¿Que producto desea comprar?");
-        }while( eleccion.toUpperCase() != 'RP' && eleccion.toUpperCase() != 'RMI' && eleccion.toUpperCase() != 'RD' && eleccion.toUpperCase() != 'RC' && eleccion.toUpperCase() != 'E');
+        }while( eleccion.toUpperCase() !== 'RP' && eleccion.toUpperCase() !== 'RMI' && eleccion.toUpperCase() !== 'RD' && eleccion.toUpperCase() !== 'RC' && eleccion.toUpperCase() !== 'E');
 
         pago_Total = pago_Total + Comprar(eleccion);
 
         do{
-            seguir_comprando = prompt("¿Desea seguir comprando? (si/no)");
-        }while(seguir_comprando.toLowerCase() != 'si' && seguir_comprando.toLowerCase() != 'no');    
+            rpta = prompt("¿Desea seguir comprando? (si/no)");
+            seguir_comprando = rpta.toLowerCase();
+        }while(rpta.toLowerCase() !== 'si' && rpta.toLowerCase() !== 'no');    
     }
 
-    if(seguir_comprando == 'no'){
+    if(seguir_comprando === 'no'){
         let finalizar_Compra = "";
 
         do{
             finalizar_Compra = prompt(`¿Desea abonar el total de ${pago_Total}?`);
-        }while(finalizar_Compra.toLowerCase() != 'si' && finalizar_Compra.toLowerCase() != 'no');
+        }while(finalizar_Compra.toLowerCase() !== 'si' && finalizar_Compra.toLowerCase() !== 'no');
 
-        if(finalizar_Compra == 'si'){
+        if(finalizar_Compra === 'si'){
             alert('Gracias por comprar en MI Indumentaria, lo esperamos pronto!');
         }else{
             alert('Guardaremos sus productos para una futura compra!');
